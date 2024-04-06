@@ -1,0 +1,5 @@
+In order to run the application directly through .exe file you will have to follow the following steps:
+
+2) Make sure you have Vulkan SDK software installed in our machine.(url - https://vulkan.lunarg.com/sdk/home#windows)
+1) Clone this repo into your machine.
+3) Open this repo where you cloned it in your file explorer. Go to bin-> Dist-windows-x86_64/WalnutApp -> run WalnutApp.exe.
