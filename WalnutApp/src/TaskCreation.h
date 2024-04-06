@@ -4,14 +4,14 @@
 
 using namespace std;
 
-int YEAR, MONTH, DATE, TF;
+int YEAR, MONTH, Date, TF;
 
 void checkCurrent() {
     time_t now = time(0);
     tm *ltm = localtime(&now);
     YEAR= 1900 + ltm->tm_year;
     MONTH= 1 + ltm->tm_mon;
-    DATE= ltm->tm_mday;
+    Date= ltm->tm_mday;
     TF=100*(ltm->tm_hour)+ltm->tm_min;
 }
 
@@ -19,13 +19,13 @@ class CreateTask{
 public:
     string name;//name of Task
     bool status;//true=complete
-    int dd,mm,yyyy;//int value of the date
+    int dd,mm,yyyy;//int value of the Date
     int tm;//time in 24 hour format
     short prio;//priority(1,2,3)
 
     //the following values are input dependant
 
-    bool td;//false=date has passed, true= to do
+    bool td;//false=Date has passed, true= to do
     string exact;//has the exact time in yyyymmddttttx format
     string fname;//stores the file name of the Task;
 
@@ -40,7 +40,7 @@ public:
         exact="0000000000000";
         fname="0000000000000.txt";
     }
-    void refresh();//this updates the values of the input dependant values. Needs to be called after input.
+    void refresh();//this upDates the values of the input dependant values. Needs to be called after input.
     void createFile();//creates the file
 };
 
@@ -59,10 +59,10 @@ void CreateTask::refresh(){
             td=false;
         }
         else{
-            if(DATE< dd){
+            if(Date< dd){
                 td=true;
             }
-            else if(DATE> dd){
+            else if(Date> dd){
                 td=false;
             }
             else{

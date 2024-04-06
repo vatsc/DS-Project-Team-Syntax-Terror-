@@ -1,7 +1,9 @@
 # Directories
 .vs/
-bin/
-bin-int/
+
+# Another ducktape, also upload executable
+# bin/
+# bin-int/
 
 # Files
 *.vcxproj
