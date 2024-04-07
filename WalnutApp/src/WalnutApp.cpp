@@ -30,8 +30,8 @@ static bool checkCT = false;
 
 
 static int date, month, year, tf;
-void setCurrent() {
-    time_t now = time(0);
+void setCurrent() {                                  // Sets the time to current time using ctime.h library.
+    time_t now = time(0);                            // Time Complexity - O(1), Space Complexity - O(1)
     tm* ltm = localtime(&now);
     year = 1900 + ltm->tm_year;
     month = 1 + ltm->tm_mon;
@@ -40,7 +40,7 @@ void setCurrent() {
 }
 
 class Node {
-public:
+public:                                            // Node Class of our priority Linked List.
     string a;
     Node* llink, * rlink;
     Node()
@@ -51,7 +51,7 @@ public:
 
     }
 };
-class PList {
+class PList {                                      // Priority Linked List.
 public:
     Node* head;
     int n;
@@ -59,9 +59,9 @@ public:
     {
         head = nullptr;
     }
-    void initialise() {
-        head = nullptr;
-        ifstream fi;
+    void initialise() {                            // Initialies the linked list.
+        head = nullptr;                            // Time Complexity - O(no. of lines in files* n) = O(k*n) = O(n);
+        ifstream fi;                               // Space Complexity - O(n)
         fi.open("Menu.txt");
         string buffer;
         while (getline(fi, buffer)) {
@@ -69,16 +69,16 @@ public:
         }
     }
     void display() {
-        Node* nn = head;
+        Node* nn = head;                        // Displays the list.
         while (nn != nullptr) {
             cout << nn->a << endl;
             nn = nn->rlink;
         }
     }
-    void insert(string z)
-    {
-        Node* tmp = new Node();
-        Node* nn = head;
+    void insert(string z)                       // Inserts the node, i.e task in this case based on priority.
+    {                                           // Time Complexity - O(n)
+        Node* tmp = new Node();                 // Space complexity - O(1)
+        Node* nn = head;                      
         tmp->a = z;
         if (head == nullptr)
         {
@@ -114,9 +114,9 @@ public:
         }
 
     }
-    bool find(string s)
-    {
-        Node* h = head;
+    bool find(string s)                         // Finds a particular data from the list.
+    {                                           // Time complexity - O(n)
+        Node* h = head;                         // Space complexity - O(1)
         while (h != nullptr)
         {
             if (h->a == s)
@@ -127,11 +127,12 @@ public:
         }
         return false;
     }
-    void delete_node(string z)
-    {
+    void delete_node(string z)                           // Deletes a node i.e, task from the list.
+                                                         // Time complexity - O(n)
+    {                                                    // Space complexity - O(1)
         Node* h = head;
         while (h != nullptr)
-        {
+        {                      
             if (h->a == z)
             {
                 if (h == head)
@@ -162,10 +163,12 @@ public:
     }
 };
 PList ll;
-class Reminder {
+class Reminder {                                             // Linked list for reminder.
 public:
     Node* rem;
-    void createRem() {
+    void createRem() {                                       // Creates the reminder list using the Priority list created above.
+                                                             // Time Complexity - O(n^2)
+                                                             // Space Complexity - O(n)
         rem = nullptr;
         Node* nn = ll.head;
         while (nn != nullptr && !retToDo(nn->a)) {
@@ -179,8 +182,10 @@ public:
             nn = nn->rlink;
         }
     }
-    bool needRem(const string& exact) {
-        int monthA[] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+    bool needRem(const string& exact) {                                 // Checks if the task should be on reminder list or not.
+                                                                         // Time Complexity - O(1)
+                                                                         // Space Complexity - O(1)
+        int monthA[] = { 31,28,31,30,31,30,31,31,30,31,30,31 }; 
         int d, m, y;
         d = retDate(exact);
         m = retMonth(exact);
@@ -226,7 +231,9 @@ public:
         }
         return false;
     }
-    void insertRem(string exact) {
+    void insertRem(string exact) {                               // Inserts a task in the reminder list.
+                                                                 // Time Complexity - O(n)
+                                                                 // Space Complexity - O(1)
         Node* tmp = new Node;
         tmp->a = exact;
         if (rem == NULL)
@@ -248,17 +255,12 @@ public:
 };
 Reminder rr;
 
-void SetcheckRT()
-{
-    for (int i = 0; i < 5; i++)
-    {
-        checkRT[i] = false;
-    }
-}
 
-void updateToDo(const string& exact) {
-    int dd = retDate(exact);
-    int mm = retMonth(exact);
+
+void updateToDo(const string& exact) {                                                              // Updates the to do list everytime its called based on the current time.
+    int dd = retDate(exact);                                                                        // Time Complexity - O(k) = constant.
+                                                                                                    // Space complexity - O(k) = constant.
+    int mm = retMonth(exact);                                                                       
     int yyyy = retYear(exact);
     int tm = retTime(exact);
     bool td;
@@ -313,8 +315,9 @@ void updateToDo(const string& exact) {
     filesystem::remove(exact + ".txt");
     filesystem::rename("temp.txt", exact + ".txt");
 }
-void refreshToDo() {
-    Node* nn = ll.head;
+void refreshToDo() {                                      // Checks every node to see if it needs an update or not based on the current time.
+    Node* nn = ll.head;                                   // Time Complexity - O(k*n)
+                                                          // Space Complexity - O(k)
     string exact;
     while (nn != nullptr) {//refresh
         exact = nn->a;
@@ -322,12 +325,13 @@ void refreshToDo() {
         nn = nn->rlink;
     }
 }
-void REFRESH() {
-    refreshToDo();
+void REFRESH() {                                          // Calls refreshToDo and creates the Reminder list.
+    refreshToDo();                                        // Time complexity - O(n^2)
+                                                        // Space complexity - O(n)
     rr.createRem();
 }
 
-Node* past;
+Node* past; 
 Node* present;
 Node* future;
 class ExampleLayer : public Walnut::Layer
@@ -336,7 +340,7 @@ public:
 
     virtual void OnUIRender() override
     {
-        setCurrent();
+        setCurrent();  // 
         ll.initialise();
         refreshToDo();
         rr.createRem();
@@ -395,7 +399,9 @@ public:
                 m_CreateTask = 0;
             }
         }
-        /*if (ImGui::Button("Remove Task"))
+        /*if (ImGui::Button("Remove Task"))                                                  // We have removed this part of code because now we are providing this functionalities through simple
+                                                                                            // buttons and checkbox. For example a delete button for deleting a particular task and a checkbox which 
+                                                                                            // user can tick to mark the task as complete.
             m_RemoveTask++;
         if (m_RemoveTask & 1)
         {
