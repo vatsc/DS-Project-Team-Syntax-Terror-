@@ -1,3 +1,11 @@
+ # Contribution of each team member
+## The contribution of each team team member goes as follows:
+
+- Hrithik created the backend of our application while Chaitanya worked on its frontend(GUI part).
+- The integration of frontend and the backend was the most important part. It was handled by Hrithik and Chaitanya.
+- The priority linked list for sorting the tasks based on the priority was created by Vansh with its functionalities.
+- Finally, the documentation and pseudocode was done entirely by Ashka.
+
 # Walnut
 
 Walnut is a simple application framework built with Dear ImGui and designed to be used with Vulkan - basically this means you can seemlessly blend real-time Vulkan rendering with a great UI library to build desktop applications. The plan is to expand Walnut to include common utilities to make immediate-mode desktop apps and simple Vulkan applications.
@@ -22,3 +30,5 @@ Once you've cloned, run `scripts/Setup.bat` to generate Visual Studio 2022 solut
 
 ### Additional
 - Walnut uses the [Roboto](https://fonts.google.com/specimen/Roboto) font ([Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0))
+
+
