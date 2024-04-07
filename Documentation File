@@ -1,0 +1,63 @@
+Capstone Project Documentation
+
+Group Name: 
+Syntax Terror
+
+Group Members: 
+Vansh Patel       202301443
+Hrithik Patel      202301441
+Chaitanya Vats  202301419
+Ashka Pathak    202301270
+
+P11. Reminder and Task Scheduler
+Create an application that manages tasks and schedules using data structures to
+prioritize and track tasks based on deadlines or importance levels. It should also
+have reminder functionality as the deadline is approaching.
+
+Github repository:
+https://github.com/vatsc/DS-Project-Team-Syntax-Terror-
+
+
+To run the application directly through the .exe file you will have to follow the following steps:
+-> Make sure you have Vulkan SDK software installed on your machine.
+  (url - https://vulkan.lunarg.com/sdk/home#windows)
+-> Clone this repo into your machine.
+-> Open this repo where you cloned it in your file explorer. 
+   Go to bin-> Dist-windows-x86_64/WalnutApp -> run WalnutApp.exe.
+
+Since our problem statement was to design a task management application which would help the client organize and prioritize their tasks effectively, priority queue was the main data structure that we had to use including linked lists to store the task as a file using file handling. Our application provides features such as task creation, and deletion. Marking the tasks as complete and even getting reminders for tasks based on their priority and deadlines.  
+On launching the application, the client is presented with an interface where they can view, add, edit as well as delete their tasks. Buttons, drop-down boxes and check-boxes are assigned which further makes task management easier and more convenient. The “Add Task” button allows the client to add new tasks based on their deadline, priority level and time. After inputting the task, the input details will be saved as a file name after selecting the “Create Task” button. If the task is created before the deadline, then it is shown in the Passed Task row, and if it is created after, then it will be shown in the To-Do Tasks. Once the task is complete, the client can simply mark the task as completed by checking the box so that the client can continue to keep track of their completed tasks. Along with the checkbox, each task also has a delete button linked to the task.
+When the client determines the priority of their tasks, they are prioritized based on their deadline and importance level. Higher priority tasks are displayed first and are given reminders as the deadline approaches. Reminders will be automatically generated based on the deadline and priority of the task. The client will be notified of upcoming deadlines to ensure timely completion of tasks. At last, the task data is saved as text files, which ensures that tasks are not lost when the application is closed.
+We have created three header files: TaskAccess.h, TaskDeletion.h, TaskCreation.h and these header files are integrated into the main file Walnut.cpp. The purpose for creating three header files was since there can be only one main function in a program, we decided to create header files out of these functions for easier implementation. Each class, function and method in the header and cpp file also have comments which explain its purpose, parameters and return values for better understanding.
+
+TaskAccess.h
+This header file consists of functions for accessing and manipulating the task reminder files by gaining attributes of the task’s name, status, date, time, priority and whether it is completed or not.
+retName takes a string as the input to store the name of the task, which is saved as the first line of the file. Using the getline function, the program will print the line from the file in which the data for retName is stored, hence printing the name of the task.
+retStatus takes the input to determine whether the task is complete or incomplete. The function will read the second line from the file, which is the task status, and return its value.
+Similarly, retDate will take the input for the date of the deadline of the task, read the fourth line of the file, which contains the deadline date and then close the file and return the value.
+Likewise, retMonth and retYear take the input for the deadline month and year, read the fifth and sixth line respectively and then retrieve the data for the deadline month and year.
+retTime function opens the file associated with the task name, reads the seventh line and then closes the file and returns the deadline time.
+retPrio is to check for the priority level of the task. It works similarly to the functions mentioned above: reads the eighth line, closes the file and returns the value.
+retToDo determines whether the task is marked as complete or incomplete by reading the ninth line, closing the file and returning the completion status.
+editStatus also takes a string as an input parameter which allows the user to toggle between complete and incomplete; it reads the current status of the task from the file; if the task is true, which means it is complete then it changes it to false (incomplete), and vice versa.  It then updates the file with the new status
+
+TaskCreation.h
+The header file includes functionalities related to managing tasks and creating task files based on certain criteria. The header file <ctime.h> is necessary for time-related functions to compare the deadline date and time with the current time. Hence, current year, month, date and time (in 24-hour format) are defined as global variables.
+checkCurrent function updates the global variables with the current system time. It uses the time() function to receive the current system time then obtains the year, month, date, and time components and updates them respectively.
+CreateTask is a class which consists of methods to refresh task details based on the current system time and create a file for the task. It is made up of member variables which determine the name of the task, its completion status, deadline date, deadline time, priority level, and a flag indicating whether the task is to be completed (true) or if the deadline has passed (false), the exact time of the task (yyyymmdd ttx format) and the file name associated with the task.
+refresh() is a method which updates the flag by comparing the deadline date and time with the current system date and time to decide whether the task is to be done or the deadline has already passed. 
+createFile() creates a file for the task with updated details by generating a unique file name for the task by attaching a numerical suffix to the ‘exact’ variable it then writes the task details to the file and updates the ‘Menu.txt’ file with the unique identifier of the task.
+Finally, the load() function loads the task details and creates an instance of the CreateTask class, updates its member variables with provided details, refreshes the task and creates a file for the task.
+
+TaskDeletion.h
+The header file contains functionalities related to deleting tasks and updating the task menu file. For file system manipulation, we have used header file <filesystem>.
+The function deletion() takes the exact filename of a task and deletes it along with its entry from the task menu file. By first opening, the take menu file to read the contents and then create a temporary file where the modified contents will be stored. The function will read through each line of the task menu file and if the current line doesn’t not match the exact filename for the task to be deleted then the line will be added to the temporary file. After it reaches the end of the menu file, it closes both the input and output file streams and removes the original task file associated with the exact file name.
+
+Output:
+https://drive.google.com/file/d/12Wij3GxZfAi5fU2nLr6vatVIInZtoWqK/view?usp=drivesdk
+
+License:
+This project is distributed under the MIT License, allowing users to use, modify, and distribute the application freely.
+
+Acknowledgements:
+We would like to acknowledge the developers and contributors who helped create and improve this task management application. Big thanks to TheCherno for his Walnut App template.
