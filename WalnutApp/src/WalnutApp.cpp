@@ -464,7 +464,7 @@ public:
                     count++;
                 }
 
-
+                string space = " ";
                 for (int row = 0; row < count; row++)
                 {
                     ImGui::TableNextRow();
@@ -472,7 +472,7 @@ public:
                     {
                         if (past != NULL && column == 0 && !retToDo(past->a))
                         {
-                            string space = "";
+                           // string space = " ";
                             exact = past->a;
                             ImGui::TableSetColumnIndex(column);
 
@@ -491,10 +491,12 @@ public:
                             string DelNo = "Delete " + to_string(runP++);
                             ImGui::SameLine(); ImGui::Text("\t\t\t\t\t"); ImGui::SameLine(); if (ImGui::Button(DelNo.c_str())) { deletion(exact); ll.delete_node(exact); };
                             int time = retTime(exact);
-                            if (time % 100 != 0)
-                                ImGui::Text("Date - %d/%d/%d    Time - %d:%d", retDate(exact), retMonth(exact), retYear(exact), time / 100, time % 100);
+                            if (time % 100 != 0 && (time % 100) / 10 == 0)
+                                ImGui::Text("Date - %d/%d/%d     Time - %d:0%d", retDate(exact), retMonth(exact), retYear(exact), time / 100, time % 100);
+                            else if (time % 100 != 0)
+                                ImGui::Text("Date - %d/%d/%d     Time - %d:%d", retDate(exact), retMonth(exact), retYear(exact), time / 100, time % 100);
                             else
-                                ImGui::Text("Date - %d/%d/%d   Time - %d:%d0", retDate(exact), retMonth(exact), retYear(exact), time / 100, time % 100);
+                                ImGui::Text("Date - %d/%d/%d     Time - %d:%d0", retDate(exact), retMonth(exact), retYear(exact), time / 100, time % 100);
                             past = past->rlink;
 
 
@@ -502,7 +504,7 @@ public:
                         }
                         else if (present != NULL && column == 1)
                         {
-                            string space = "";
+                            
                             exact = present->a;
                             name = retName(exact) + space;
                             space += " ";
@@ -520,7 +522,9 @@ public:
                             string DelNo = "Delete " + to_string(runT++);
                             ImGui::SameLine(); ImGui::Text("\t\t\t\t\t"); ImGui::SameLine(); if (ImGui::Button(DelNo.c_str())) { deletion(exact); ll.delete_node(exact); };
                             int time = retTime(exact);
-                            if (time % 100 != 0)
+                            if (time % 100 != 0 && (time %100)/10==0  )
+                                ImGui::Text("Date - %d/%d/%d     Time - %d:0%d", retDate(exact), retMonth(exact), retYear(exact), time / 100, time % 100);
+                            else if(time % 100 != 0)
                                 ImGui::Text("Date - %d/%d/%d     Time - %d:%d", retDate(exact), retMonth(exact), retYear(exact), time / 100, time % 100);
                             else
                                 ImGui::Text("Date - %d/%d/%d     Time - %d:%d0", retDate(exact), retMonth(exact), retYear(exact), time / 100, time % 100);
@@ -528,7 +532,7 @@ public:
                         }
                         else if (future != NULL && column == 2)
                         {
-                            string space = "";
+                            
                             exact = future->a;
                             name = retName(exact) + space;
                             space += " ";
@@ -537,7 +541,9 @@ public:
                             ImGui::Text("Priority: %d", retPrio(exact));
                             ImGui::NewLine();
                             int time = retTime(exact);
-                            if (time % 100 != 0)
+                            if (time % 100 != 0 && (time % 100) / 10 == 0)
+                                ImGui::Text("Date - %d/%d/%d     Time - %d:0%d", retDate(exact), retMonth(exact), retYear(exact), time / 100, time % 100);
+                            else if (time % 100 != 0)
                                 ImGui::Text("Date - %d/%d/%d     Time - %d:%d", retDate(exact), retMonth(exact), retYear(exact), time / 100, time % 100);
                             else
                                 ImGui::Text("Date - %d/%d/%d     Time - %d:%d0", retDate(exact), retMonth(exact), retYear(exact), time / 100, time % 100);
