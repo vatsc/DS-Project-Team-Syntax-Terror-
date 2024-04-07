@@ -23,7 +23,7 @@ const char* m_months[12] = { "January", "February", "March", "April", "May", "Ju
 static int month_current = 0;
 static int day_current = 0;
 int counter = 0;
-static bool checkRT[5];
+static bool checkRT[40];
 
 static bool checkCT = false;
 
@@ -472,10 +472,12 @@ public:
                     {
                         if (past != NULL && column == 0 && !retToDo(past->a))
                         {
+                            string space = "";
                             exact = past->a;
                             ImGui::TableSetColumnIndex(column);
 
-                            name = retName(exact);
+                            name = retName(exact) + space;
+                            space += " ";
                             //   name = "McD";
                                   // ImGui::Text("%s", name.c_str());
                                 //   counter++;
@@ -500,8 +502,10 @@ public:
                         }
                         else if (present != NULL && column == 1)
                         {
+                            string space = "";
                             exact = present->a;
-                            name = retName(exact);
+                            name = retName(exact) + space;
+                            space += " ";
                             ImGui::TableSetColumnIndex(column);
                             //ImGui::Text("%s", name.c_str());
                             bool checkRT = retStatus(exact);
@@ -524,8 +528,10 @@ public:
                         }
                         else if (future != NULL && column == 2)
                         {
+                            string space = "";
                             exact = future->a;
-                            name = retName(exact);
+                            name = retName(exact) + space;
+                            space += " ";
                             ImGui::TableSetColumnIndex(column);
                             ImGui::Text("%s", name.c_str());
                             ImGui::Text("Priority: %d", retPrio(exact));
