@@ -1,0 +1,5 @@
+Follow the following steps to access the source code:
+
+1) Clone the repo in your machine.
+2) Go to WalnutApp -> src -> WalnutApp.cpp
+3) If you want to see the header files included in the project(backend stuff), go to WalnutApp -> src. There you'll find all the required header files.
